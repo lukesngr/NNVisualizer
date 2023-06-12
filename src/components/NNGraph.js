@@ -1,9 +1,10 @@
 import returnValueOfPerceptron from "../returnValueOfPerceptron";
+import Perceptron from "./Perceptron"
 
 function NNGraph(props) {
 
-    var hiddenParameter = props.x1*props.w1+"+"+props.b1;
-    var hiddenResult = returnValueOfPerceptron(props.x1*props.w1, props.b1);
+    var hiddenParameter = props.x*props.w1+"+"+props.b1;
+    var hiddenResult = returnValueOfPerceptron(props.x*props.w1, props.b1);
     var outputParameter = (props.w2*hiddenResult).toFixed(2)+"+"+props.b2;
     var outputResult = returnValueOfPerceptron(hiddenResult*props.w2, props.b2).toFixed(2);
     return (
@@ -11,33 +12,27 @@ function NNGraph(props) {
             <div className="row">
                 <div className="col-md-2" style={{paddingRight: 0}}>
                     <h1>Input Layer</h1>
-                    <div className="rounded-circle border border-dark text-center mt-5">
-                        <h1>{props.x1}</h1>
-                    </div>
+                    <Perceptron margin={5} input={props.x}></Perceptron>
                 </div>
                 <div className="col-md-2" style={{paddingLeft: 0, paddingRight: 0}}>
                     <div style={{marginTop: "40%"}} className="text-left">
-                        <p>w1*x1 = {props.w1}*{props.x1}</p>
+                        <p>w1*x = {props.w1}*{props.x}</p>
                         <hr></hr>
                     </div> 
                 </div>
                 <div className="col-md-2" style={{paddingLeft: 0, paddingRight: 0}}>
                     <h1>Hidden Layer</h1>
-                    <div className="rounded-circle border border-dark text-center p-1">
-                        <h3>S({hiddenParameter}) = {hiddenResult.toFixed(2)}</h3>
-                    </div>
+                    <Perceptron input={"S("+hiddenParameter+") ="+hiddenResult.toFixed(2)} />
                 </div>
                 <div className="col-md-2"  style={{paddingLeft: 0, paddingRight: 0}}>
                     <div style={{marginTop: "40%"}} className="text-left">
-                        <p>w2*input = {props.w2}*{returnValueOfPerceptron(props.x1*props.w1, props.b1).toFixed(2)}</p>
+                        <p>w2*input = {props.w2}*{hiddenResult.toFixed(2)}</p>
                         <hr></hr>
                     </div> 
                 </div>
                 <div className="col-md-2"  style={{paddingLeft: 0, paddingRight: 0}}>
                     <h1>Output Layer</h1>
-                    <div className="rounded-circle border border-dark text-center">
-                        <h3>S({outputParameter}) = {outputResult}</h3>
-                    </div>
+                    <Perceptron input={"S("+outputParameter+") ="+outputResult} />
                 </div>
                 <div className="col-md-2"></div>
             </div>
