@@ -1,4 +1,11 @@
 
+.centeredDescription {
+  width: 39%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
